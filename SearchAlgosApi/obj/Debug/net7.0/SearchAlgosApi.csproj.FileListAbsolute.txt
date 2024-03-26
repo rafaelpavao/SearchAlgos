@@ -51,3 +51,4 @@
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/bin/Debug/net7.0/Trabalho01Grafos/Trabalho01Grafos/Trabalho01Grafos/Trabalho01Grafos/appsettings.json
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/bin/Debug/net7.0/Trabalho01Grafos/Trabalho01Grafos/Trabalho01Grafos/Trabalho01Grafos/SearchAlgosApi.deps.json
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/bin/Debug/net7.0/Trabalho01Grafos/Trabalho01Grafos/Trabalho01Grafos/Trabalho01Grafos/SearchAlgosApi.runtimeconfig.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/obj/Debug/net7.0/SearchAlgosApi.sourcelink.json

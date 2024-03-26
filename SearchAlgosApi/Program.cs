@@ -1,3 +1,5 @@
+using SearchAlgosApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var port = 5206;
@@ -5,6 +7,8 @@ var port = 5206;
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IGraph, Graph>();
 
 var app = builder.Build();
 
