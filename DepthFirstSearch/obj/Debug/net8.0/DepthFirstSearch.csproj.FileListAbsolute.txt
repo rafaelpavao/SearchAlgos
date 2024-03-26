@@ -12,3 +12,4 @@
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.pdb
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.genruntimeconfig.cache
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/ref/DepthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.sourcelink.json

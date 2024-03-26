@@ -12,3 +12,4 @@
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.pdb
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.genruntimeconfig.cache
 /Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/ref/BreadthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.sourcelink.json
