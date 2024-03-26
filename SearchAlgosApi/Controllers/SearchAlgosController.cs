@@ -59,7 +59,12 @@ public class SearchAlgosController : ControllerBase
     {
         if(Graph.IsConnected()) return BadRequest("Graph is already connected. No need to find SCC.");
         var scc = Graph.StronglyConnectedComponents();
-        return Ok(scc);
+        var response = new Dictionary<string, string>();
+        foreach (var component in scc)
+        {
+            response.Add($"Sub-Graph {scc.IndexOf(component) + 1}", string.Join(", ", component));
+        }
+        return Ok(response);
     }
 
     [HttpPost("DepthFirstSearch", Name = "DFS")]

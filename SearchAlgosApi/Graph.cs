@@ -208,12 +208,17 @@ public class Graph : IGraph
             {
                 if (vertex.Connections.Except(Vertices.Select(v => v.VertexName)).Any())
                 {
+                    if(VertexConnectsOnlyToHimself(vertex)) Vertices.Add(vertex);
                     continue;
                 }
             }
-
             Vertices.Add(vertex);
         }
+    }
+
+    private bool VertexConnectsOnlyToHimself(Vertex vertex)
+    {
+        return vertex.Connections.Count is 1 && vertex.Connections.First().Equals(vertex.VertexName);
     }
 
     public void RemoveVertex(string vertexName)
