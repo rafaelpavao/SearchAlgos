@@ -1,0 +1,14 @@
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/bin/Debug/net8.0/DepthFirstSearch
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/bin/Debug/net8.0/DepthFirstSearch.deps.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/bin/Debug/net8.0/DepthFirstSearch.runtimeconfig.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/bin/Debug/net8.0/DepthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/bin/Debug/net8.0/DepthFirstSearch.pdb
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.AssemblyInfoInputs.cache
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.AssemblyInfo.cs
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.csproj.CoreCompileInputs.cache
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/refint/DepthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.pdb
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/DepthFirstSearch.genruntimeconfig.cache
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/DepthFirstSearch/obj/Debug/net8.0/ref/DepthFirstSearch.dll

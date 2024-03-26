@@ -1,0 +1,12 @@
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/SearchAlgosApi
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/appsettings.Development.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/appsettings.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/SearchAlgosApi.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/SearchAlgosApi.deps.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/SearchAlgosApi.runtimeconfig.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/SearchAlgosApi.pdb
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/Microsoft.AspNetCore.OpenApi.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/Microsoft.OpenApi.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/Swashbuckle.AspNetCore.Swagger.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/SearchAlgosApi/output/Swashbuckle.AspNetCore.SwaggerUI.dll

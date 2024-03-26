@@ -1,0 +1,14 @@
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/bin/Debug/net8.0/BreadthFirstSearch
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/bin/Debug/net8.0/BreadthFirstSearch.deps.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/bin/Debug/net8.0/BreadthFirstSearch.runtimeconfig.json
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/bin/Debug/net8.0/BreadthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/bin/Debug/net8.0/BreadthFirstSearch.pdb
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.AssemblyInfoInputs.cache
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.AssemblyInfo.cs
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.csproj.CoreCompileInputs.cache
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/refint/BreadthFirstSearch.dll
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.pdb
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/BreadthFirstSearch.genruntimeconfig.cache
+/Users/rafaelpavao/Documents/WS/grafos_ws/DFS/BreadthFirstSearch/obj/Debug/net8.0/ref/BreadthFirstSearch.dll
