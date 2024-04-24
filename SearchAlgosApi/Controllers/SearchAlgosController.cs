@@ -18,10 +18,16 @@ public class SearchAlgosController : ControllerBase
     [HttpPost("EnterGraph", Name = "Graph Input")]
     public IActionResult EnterGraph(Graph graph, bool isDirected, int verticesCount)
     {
+        if(graph.IsDirected != isDirected)
+        {
+            return BadRequest("Bad request. Graph is not directed as specified. Please enter the correct graph type.");
+        }
         if (!isDirected)
         {
             graph.CreateUndirectedGraph();
+            Graph.SetDirected(false);
         }
+        Graph.SetDirected(true);
         Graph.SetVertices(graph.Vertices);
         if(Graph.GetVertexCount() != verticesCount)
         {
@@ -29,6 +35,8 @@ public class SearchAlgosController : ControllerBase
         }
         return Ok(Graph.ViewGraph());
     }
+    
+    
     
     [HttpPost("AddVertex", Name = "Add Vertex")]
     public IActionResult AddVertex(List<Vertex> vertices)
@@ -68,23 +76,37 @@ public class SearchAlgosController : ControllerBase
     }
 
     [HttpPost("DepthFirstSearch", Name = "DFS")]
-    public ActionResult<IEnumerable<string>> DFS(string startVertex, bool isDirected)
+    public ActionResult<IEnumerable<string>> DFS(string startVertex)
     {
         var visitingOrder = Graph.DepthFirstSearch(startVertex);
         return Ok(Graph.ViewGraph(visitingOrder, "DFS", startVertex));
     }
     
     [HttpPost("BreadthFirstSearch", Name = "BFS")]
-    public ActionResult<IEnumerable<string>> BFS(string startVertex, bool isDirected)
+    public ActionResult<IEnumerable<string>> BFS(string startVertex)
     {
         var visitingOrder = Graph.BreadthFirstSearch(startVertex);
         return Ok(Graph.ViewGraph(visitingOrder, "BFS", startVertex));
     }
     
     [HttpPost("DirectTransitiveCloser", Name = "DTC")]
-    public ActionResult<IEnumerable<string>> DirectTransitiveCloser(string startVertex, bool isDirected)
+    public ActionResult<IEnumerable<string>> DirectTransitiveCloser(string startVertex)
     {
         var relatedDepth = Graph.DirectTransitiveCloser(startVertex);
         return Ok(relatedDepth);
+    }
+    
+    [HttpPost("IndirectTransitiveCloser", Name = "ITC")]
+    public ActionResult<IEnumerable<string>> IndirectTransitiveCloser(string startVertex)
+    {
+        var relatedDepth = Graph.IndirectTransitiveCloser(startVertex);
+        return Ok(relatedDepth);
+    }
+    
+    [HttpGet("ColorGraph", Name = "ColorGraph")]
+    public ActionResult<IEnumerable<string>> ColorGraph()
+    {
+        Graph.ColorGraph();
+        return Ok(Graph.ViewGraph());
     }
 }

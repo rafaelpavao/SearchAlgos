@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SearchAlgosApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68d6149f8da8b43efe6a7c9fc33e7583979344e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+190563c249249533b54a202a43927721326ffea3")]
 [assembly: System.Reflection.AssemblyProductAttribute("SearchAlgosApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SearchAlgosApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

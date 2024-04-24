@@ -6,6 +6,7 @@ namespace SearchAlgosApi;
 public class Graph : IGraph
 {
     public List<Vertex> Vertices { get; set; }
+    public bool IsDirected { get; set; }
 
     #region BFS
 
@@ -43,7 +44,7 @@ public class Graph : IGraph
     }
 
     #endregion
-    
+
     #region DFS
 
     public List<string> DepthFirstSearch(string startVertex)
@@ -100,22 +101,21 @@ public class Graph : IGraph
         var relatedDepth = new Dictionary<string, int>();
         var visited = new HashSet<string>();
         var queue = new Queue<string>();
-        int depth = 0;
 
-        relatedDepth.Add(startVertex, depth);
+        relatedDepth.Add(startVertex, 0);
         visited.Add(startVertex);
         queue.Enqueue(startVertex);
 
         while (queue.Count > 0)
         {
             var currentVertex = queue.Dequeue();
-            depth = relatedDepth[currentVertex] + 1;
+            var currentDepth = relatedDepth[currentVertex];
 
             foreach (var connection in Vertices.FirstOrDefault(v => v.VertexName == currentVertex)!.Connections)
             {
                 if (!visited.Contains(connection))
                 {
-                    relatedDepth.Add(connection, depth);
+                    relatedDepth.Add(connection, currentDepth + 1);
                     visited.Add(connection);
                     queue.Enqueue(connection);
                 }
@@ -130,24 +130,26 @@ public class Graph : IGraph
         var relatedDepth = new Dictionary<string, int>();
         var visited = new HashSet<string>();
         var stack = new Stack<string>();
-        int depth = 0;
 
-        relatedDepth.Add(startVertex, depth);
-        // visited.Add(startVertex);
         stack.Push(startVertex);
+        relatedDepth.Add(startVertex, 0);
 
         while (stack.Count > 0)
         {
             var currentVertex = stack.Pop();
-            depth = relatedDepth[currentVertex] + 1;
+            var currentDepth = relatedDepth[currentVertex];
 
-            foreach (var connection in Vertices.FirstOrDefault(v => v.VertexName == currentVertex)!.Connections)
+            if (!visited.Contains(currentVertex))
             {
-                if (!visited.Contains(connection))
+                visited.Add(currentVertex);
+
+                foreach (var vertex in Vertices)
                 {
-                    relatedDepth.Add(connection, depth);
-                    visited.Add(connection);
-                    stack.Push(connection);
+                    if (vertex.Connections.Contains(currentVertex) && !visited.Contains(vertex.VertexName))
+                    {
+                        stack.Push(vertex.VertexName);
+                        relatedDepth.Add(vertex.VertexName, currentDepth + 1);
+                    }
                 }
             }
         }
@@ -156,10 +158,10 @@ public class Graph : IGraph
     }
 
     #endregion
-    
+
     #region GraphUtils
 
-    public List<string> ViewGraph()
+    public List<List<string>> ViewGraph()
     {
         return Vertices.Select(v => v.View()).ToList();
     }
@@ -174,6 +176,7 @@ public class Graph : IGraph
         graphData.Add("AlgoUsed", algoUsed);
         return graphData;
     }
+
     public void CreateUndirectedGraph()
     {
         foreach (var vertex in Vertices)
@@ -195,24 +198,38 @@ public class Graph : IGraph
         Vertices = vertices;
     }
 
+    public void SetDirected(bool isDirected)
+    {
+        IsDirected = isDirected;
+    }
+
     public void AddVertices(List<Vertex> vertices)
     {
         foreach (var vertex in vertices)
         {
-            if (Vertices.Select(v => v.VertexName).Contains(vertex.VertexName))
-            {
-                continue;
-            }
+            bool willAdd = !Vertices.Select(v => v.VertexName).Contains(vertex.VertexName);
 
             if (vertex.Connections.Count > 0)
             {
                 if (vertex.Connections.Except(Vertices.Select(v => v.VertexName)).Any())
                 {
-                    if(VertexConnectsOnlyToHimself(vertex)) Vertices.Add(vertex);
-                    continue;
+                    if (VertexConnectsOnlyToHimself(vertex)) willAdd = true;
+                    else willAdd = false;
                 }
             }
-            Vertices.Add(vertex);
+
+            if (willAdd) Vertices.Add(vertex);
+            if (!IsDirected)
+            {
+                foreach (var connection in vertex.Connections)
+                {
+                    var connectedVertex = Vertices.FirstOrDefault(v => v.VertexName == connection);
+                    if (connectedVertex != null && !connectedVertex.Connections.Contains(vertex.VertexName))
+                    {
+                        connectedVertex.Connections.Add(vertex.VertexName);
+                    }
+                }
+            }
         }
     }
 
@@ -223,10 +240,6 @@ public class Graph : IGraph
 
     public void RemoveVertex(string vertexName)
     {
-        // 1. vertex exists in the graph
-        // 2. remove vertex from the graph
-        // 3. remove vertex from the connections of other vertices
-
         if (!Vertices.Select(v => v.VertexName).Contains(vertexName))
         {
             return;
@@ -255,37 +268,21 @@ public class Graph : IGraph
 
     public bool IsConnected()
     {
-        var stack = new Stack<string>();
-        stack.Push(Vertices.First().VertexName);
-        var visitingOrder = IsConnectedVisitingAlgo(stack);
-        return visitingOrder;
-    }
-
-    private bool IsConnectedVisitingAlgo(Stack<string> stack)
-    {
-        var visited = new HashSet<string>();
-        while (stack.Count > 0)
+        foreach (var vertex in Vertices)
         {
-            var vertex = stack.Pop();
-            if (!visited.Contains(vertex))
+            var directClosure = DirectTransitiveCloser(vertex.VertexName).Select(x => x.Key);
+            var indirectClosure = IndirectTransitiveCloser(vertex.VertexName).Select(x => x.Key);
+
+            var directSet = new HashSet<string>(directClosure);
+            var indirectSet = new HashSet<string>(indirectClosure);
+
+            if (!directSet.SetEquals(indirectSet) || directSet.Count != Vertices.Count)
             {
-                visited.Add(vertex);
-                var connections = Vertices.FirstOrDefault(v => v.VertexName == vertex)?.Connections;
-                if (connections != null)
-                {
-                    foreach (var connection in connections)
-                    {
-                        var connectedVertex = Vertices.FirstOrDefault(v => v.VertexName == connection);
-                        if (connectedVertex != null && !visited.Contains(connectedVertex.VertexName))
-                        {
-                            stack.Push(connectedVertex.VertexName);
-                        }
-                    }
-                }
+                return false;
             }
         }
 
-        return visited.Count == Vertices.Count;
+        return true;
     }
 
     #endregion
@@ -294,102 +291,64 @@ public class Graph : IGraph
 
     public List<List<string>> StronglyConnectedComponents()
     {
-        var stack = new Stack<string>();
+        var stronglyConnectedComponents = new List<List<string>>();
         var visited = new HashSet<string>();
 
-        // Primeira passagem DFS para determinar a ordem de término
         foreach (var vertex in Vertices)
         {
             if (!visited.Contains(vertex.VertexName))
             {
-                DFSOrder(vertex.VertexName, visited, stack);
+                var directClosure = DirectTransitiveCloser(vertex.VertexName).Select(x => x.Key);
+                var indirectClosure = IndirectTransitiveCloser(vertex.VertexName).Select(x => x.Key);
+
+                var intersection = directClosure.Intersect(indirectClosure).ToList();
+
+                if (intersection.Any())
+                {
+                    stronglyConnectedComponents.Add(intersection);
+                    visited.UnionWith(intersection);
+                }
             }
         }
-
-        // Inverter as direções de todas as arestas
-        InvertGraph();
-
-        visited.Clear();
-        var stronglyConnectedComponents = new List<List<string>>();
-
-        // Segunda passagem DFS para encontrar os componentes fortemente conexos
-        while (stack.Count > 0)
-        {
-            var vertex = stack.Pop();
-            if (!visited.Contains(vertex))
-            {
-                var component = new List<string>();
-                DFSComponent(vertex, visited, component);
-                stronglyConnectedComponents.Add(component);
-            }
-        }
-
-        // Inverter as direções de todas as arestas novamente para restaurar o grafo original
-        InvertGraph();
 
         return stronglyConnectedComponents;
     }
 
-    private void DFSOrder(string vertex, HashSet<string> visited, Stack<string> stack)
-    {
-        visited.Add(vertex);
-        var connections = Vertices.FirstOrDefault(v => v.VertexName == vertex)?.Connections;
-        if (connections != null)
-        {
-            foreach (var connection in connections)
-            {
-                if (!visited.Contains(connection))
-                {
-                    DFSOrder(connection, visited, stack);
-                }
-            }
-        }
-
-        stack.Push(vertex);
-    }
-
-    private void DFSComponent(string vertex, HashSet<string> visited, List<string> component)
-    {
-        visited.Add(vertex);
-        component.Add(vertex);
-        var connections = Vertices.FirstOrDefault(v => v.VertexName == vertex)?.Connections;
-        if (connections != null)
-        {
-            foreach (var connection in connections)
-            {
-                if (!visited.Contains(connection))
-                {
-                    DFSComponent(connection, visited, component);
-                }
-            }
-        }
-    }
-
-    private void InvertGraph()
-    {
-        var invertedConnections = new Dictionary<string, List<string>>();
-        foreach (var vertex in Vertices)
-        {
-            foreach (var connection in vertex.Connections)
-            {
-                if (!invertedConnections.ContainsKey(connection))
-                {
-                    invertedConnections[connection] = new List<string>();
-                }
-
-                invertedConnections[connection].Add(vertex.VertexName);
-            }
-        }
-
-        foreach (var vertex in Vertices)
-        {
-            vertex.Connections = invertedConnections.ContainsKey(vertex.VertexName)
-                ? invertedConnections[vertex.VertexName]
-                : new List<string>();
-        }
-    }
-
     #endregion
 
+    private int GetSaturationDegreeOfVertices(Vertex vertex)
+    {
+        var adjacentColors = new List<Color>();
+        foreach (var connection in vertex.Connections)
+        {
+            var connectedVertex = Vertices.FirstOrDefault(v => v.VertexName == connection);
+            if(connectedVertex?.Color is null) continue;
+            if (!adjacentColors.Contains(connectedVertex.Color))
+            {
+                adjacentColors.Add(connectedVertex.Color);
+            }
+        }
+
+        return adjacentColors.Count;
+    }
     
+    public void ColorGraph()
+    {
+        var saturationOrder = Vertices.OrderByDescending(v => v.Degree()).ToList();
+        var i = 1;
+        while(Vertices.Any(v => v.Color == null))
+        {
+            foreach (var vertex in saturationOrder.Where(v => v.Color == null))
+            {
+                var connectedVertices = 
+                    vertex.Connections.Select(c => Vertices.FirstOrDefault(v => v.VertexName == c)).ToList();
+                if (connectedVertices.All(cv => cv?.Color?.ColorName != i))
+                {
+                    vertex.Color = new Color(i);
+                    saturationOrder = saturationOrder.OrderByDescending(v => GetSaturationDegreeOfVertices(v)).ThenByDescending(v => v.Degree()).ToList();
+                }
+            }
+            i++;
+        }
+    }
 }
